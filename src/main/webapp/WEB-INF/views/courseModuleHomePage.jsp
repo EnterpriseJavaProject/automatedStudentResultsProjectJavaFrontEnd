@@ -1,0 +1,1169 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+   <%@ page import = "javax.sql.DataSource" %>
+<%@ page import = "java.sql.*" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="ISO-8859-1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+<title>Admin Page</title>
+
+					<!-- CSS LINKS -->
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/sb-admin-2.min.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/all.min.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/all.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/sb-admin-2.css" type="text/css" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/csss/animate-css/animate.min.css" media="screen" >
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/csss/lobipanel/lobipanel.min.css" media="screen" >
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/csss/toastr/toastr.min.css" media="screen" >
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/csss/icheck/skins/line/blue.css" >
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/csss/icheck/skins/line/red.css" >
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/csss/icheck/skins/line/green.css" >
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/csss/main.css" media="screen" >
+        <script src="${pageContext.request.contextPath }/resources/jss/modernizr/modernizr.min.js"></script>
+
+
+
+
+
+
+
+
+
+<link href="${pageContext.request.contextPath }/resources/css/datatables.min.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/bootstrap.css" type="text/css" rel="stylesheet">
+
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/datatables.min.js"></script>
+
+     <!-- JAVASCRIPT LINKS -->
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f2335702-9774-4b1c-b0da-c92f58fbccc6";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/42d3376bce.js" crossorigin="anonymous"></script>
+
+
+
+<style>
+.move{
+text-align: center;
+}
+html{
+    scroll-behavior: smooth;
+     }
+         
+    .gotopbtn
+{
+position: fixed;
+height: 10px;
+bottom: 40px;
+left:  200px;
+}
+
+
+
+
+
+
+
+            h5 {
+                color: #3060f0;
+                font-size: 2.1em;
+                margin-left: 20px;
+            }
+
+            h4 {
+                color: #3060f0;
+            }
+
+
+            .chart {
+                width: 600px;
+                height: 300px;
+                display: block;
+                margin-left: 350px;
+
+            }
+
+            .numbers {
+                color: maroon;
+                margin: 0;
+                padding: 0;
+                width: 50px;
+                height: 100%;
+                display: inline-block;
+                float: left;
+            }
+
+            .numbers li {
+                list-style: none;
+                height: 150px;
+                position: relative;
+                bottom: 145px;
+            }
+
+            .numbers span {
+                font-size: 12px;
+                font-weight: 600;
+                position: absolute;
+                bottom: 0;
+                right: 10px;
+            }
+
+            .bars {
+                color: #3060f0;
+                font-size: 12px;
+                font-weight: 600;
+                background: lightseagreen;
+                margin: 0;
+                padding: 0;
+                display: inline-block;
+                width: 530px;
+                height: 300px;
+                box-shadow: 0 0 10px 0 yellow;
+                border-radius: 5px;
+            }
+
+            .bars li {
+                display: table-cell;
+                width: 100px;
+                height: 300px;
+                position: relative;
+            }
+
+            .bars span {
+                width: 100%;
+                position: absolute;
+                bottom: -30px;
+                text-align: center;
+            }
+
+            .bars .bar {
+                display: block;
+                background: #55EFC4;
+                width: 70px;
+                position: absolute;
+                bottom: 0;
+                margin-left: 25px;
+                text-align: center;
+                box-shadow: 0 0 10px 0 red;
+                transition: 0.5s;
+                transition-property: background, box-shadow;
+            }
+
+            .bars .bar:hover {
+                background: aqua;
+                box-shadow: 0 0 10px 0 black;
+                cursor: pointer;
+            }
+
+            .bars .bar:before {
+                color: white;
+                content: attr(data-percentage) '%';
+                position: relative;
+                bottom: 20px;
+            }
+
+
+
+
+
+</style>
+
+</head>
+
+
+
+
+
+
+<body id="page-top">
+
+
+ <!-- Page Wrapper -->
+  <div id="wrapper">
+
+       
+
+
+
+
+
+
+
+						<!-- NAV BAR/ SIDE BAR -->
+
+
+
+
+
+
+
+
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+  <div class="sidebar-brand-icon rotate-n-15">
+    <img class="img-profile rounded-circle" src="${pageContext.request.contextPath }/resources/images/aiti1.jpeg" width="50" height="50">
+  </div>
+  <div class="sidebar-brand-text mx-3"> AITI-KACE </div>
+</a>
+
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
+
+<!-- Students and Admin Dashboard -->
+<li class="nav-item active">
+  <a class="nav-link" href="${pageContext.request.contextPath }/aitiKaceCsdResultsApiConsumption/getCourseModuleHomePage">
+    <i class="fas fa-fw fa-tachometer-alt"></i>
+    <span>Students Dashboard</span></a>
+</li>
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+	<li class="nav-item">
+<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
+  <i class="fas fa-fw fa-folder"></i>
+    <span> ADMIN ACTIONS </span>
+  </a>
+  <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+
+      <a class="collapse-item" href="${pageContext.request.contextPath }/aitiKaceCoursesApiConsumption/getAllCoursesHomePage"> COURSES</a>     
+      
+	  <a class="collapse-item" href="${pageContext.request.contextPath }/aitiKaceModulesApiConsumption/getAllModulesHomePage">MODULES</a>
+
+	  <a class="collapse-item" href="${pageContext.request.contextPath }/aitiKaceStudentsApiConsumption/getStudentsHomePage">STDUENTS</a>
+	  
+<a class="collapse-item" href="${pageContext.request.contextPath }/aitiKaceResultsApiConsumption/retrieveAllResults">VIEW RESULTS</a>
+
+
+    </div>
+  </div>
+</li>
+
+
+<!-- Divider -->
+<hr class="sidebar-divider">
+
+
+
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+
+  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  
+</div>
+
+</ul>
+<!-- End of Sidebar -->
+
+
+
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+
+
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">�</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="${pageContext.request.contextPath }/aitiKaceStudentsApiConsumption/getLoginBackHomePage=GO=BACK-TO=HOME-PAGE=ODP-SDSHJD=SDJD-DJSJ=D=Z=O=-SJ-DDN-DD-DMNC">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+<!-- Main Content -->
+<div id="content">
+
+  <!-- Topbar -->
+  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+      <i class="fa fa-bars"></i>
+    </button>
+
+    <!-- Topbar Search -->
+    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+      <div class="input-group">
+        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" required>
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-search fa-sm"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+ 
+    <a href="#"><img src="${pageContext.request.contextPath }/resources/images/aiti.png" alt="" width="" height="50"></a>
+
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+
+      <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+      <li class="nav-item dropdown no-arrow d-sm-none">
+        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-search fa-fw"></i>
+        </a>
+        <!-- Dropdown - Messages -->
+        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+          <form class="form-inline mr-auto w-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" required>
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
+
+      <!-- Nav Item - Alerts -->
+      <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-bell fa-fw"></i>
+          <!-- Counter - Alerts -->
+          <span class="badge badge-danger badge-counter">3+</span>
+        </a>
+        <!-- Dropdown - Alerts -->
+        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+          <h6 class="dropdown-header">
+            Alerts Center
+          </h6>
+          <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="mr-3">
+              <div class="icon-circle bg-primary">
+                <i class="fas fa-file-alt text-white"></i>
+              </div>
+            </div>
+            <div>
+              <div class="small text-gray-500">December 12, 2019</div>
+              <span class="font-weight-bold">Solomon Okyere results has been added successfully</span>
+            </div>
+          </a>
+          <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="mr-3">
+              <div class="icon-circle bg-success">
+                <i class="fas fa-donate text-white"></i>
+              </div>
+            </div>
+            <div>
+              <div class="small text-gray-500">December 7, 2019</div>
+              Bismark Otu records has been updated successfully
+            </div>
+          </a>
+          <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="mr-3">
+              <div class="icon-circle bg-warning">
+                <i class="fas fa-exclamation-triangle text-white"></i>
+              </div>
+            </div>
+            <div>
+              <div class="small text-gray-500">December 2, 2019</div>
+              Oscar Opoku results has been added successfully
+            </div>
+          </a>
+          <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+        </div>
+      </li>
+
+      <!-- Nav Item - Messages -->
+      <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-envelope fa-fw"></i>
+          <!-- Counter - Messages -->
+          <span class="badge badge-danger badge-counter">7</span>
+        </a>
+        <!-- Dropdown - Messages -->
+        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+          <h6 class="dropdown-header">
+            Message Center
+          </h6>
+          <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="dropdown-list-image mr-3">
+              <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
+              <div class="status-indicator bg-success"></div>
+            </div>
+            <div class="font-weight-bold">
+              <div class="text-truncate">Admin just login</div>
+              <div class="small text-gray-500">Admin � 1m</div>
+            </div>
+          </a>
+          <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="dropdown-list-image mr-3">
+              <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
+              <div class="status-indicator"></div>
+            </div>
+            <div>
+              <div class="text-truncate">CYBER SECURITY7.4 has been created successfully</div>
+              <div class="small text-gray-500">Admin � 1d</div>
+            </div>
+          </a>
+          <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="dropdown-list-image mr-3">
+              <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
+              <div class="status-indicator bg-warning"></div>
+            </div>
+            <div>
+              <div class="text-truncate">Error Whiles logging in by Admin</div>
+              <div class="small text-gray-500">Admin � 2d</div>
+            </div>
+          </a>
+          <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="dropdown-list-image mr-3">
+              <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
+              <div class="status-indicator bg-success"></div>
+            </div>
+            <div>
+               <div class="text-truncate">CCNA1.8 has been crested successfully</div>
+              <div class="small text-gray-500">Admin � 58m</div>
+            </div>
+          </a>
+          <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+        </div>
+      </li>
+
+      <div class="topbar-divider d-none d-sm-block"></div>
+
+      <!-- Nav Item - User Information -->
+      <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+          
+          </span>
+          <img class="img-profile rounded-circle" src="${pageContext.request.contextPath }/resources/images/aiti1.jpeg">
+        </a>
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+         
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            Logout
+          </a>
+        </div>
+      </li>
+
+    </ul>
+
+  </nav>
+  <!-- End of Topbar -->
+
+
+
+
+
+
+
+
+
+
+   <!-- Begin Page Content -->
+        <div class="container-fluid">
+        
+        
+        
+        
+        
+                                                             <div class="row text-center">
+                                
+
+
+
+
+    
+                                  <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12" data-toggle="collapse" data-target="#coll">
+                                    <a class="dashboard-stat bg-primary" href="${pageContext.request.contextPath }/aitiKaceStudentsApiConsumption/getStudentsHomePage">
+
+
+
+                                        <span class="number counter">
+                                        
+                                       
+           <%
+
+try{
+
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/automated_student_results_system", "root", "");
+Statement stmt = conn.createStatement();
+
+ResultSet rs = stmt.executeQuery("SELECT count(*) from students");
+            
+if(rs.next()){
+
+%>                   				
+                                              
+  <%= rs.getString("count(*)")  %>
+        
+  <%
+
+}
+    
+}catch(Exception e){
+
+out.println(e.getMessage());
+} 
+
+%>           
+                                        </span>
+                                        <span class="name">Registered Students</span>
+                                        <span class="bg-icon"><i class="fa fa-users"></i></span>
+                                    </a>
+                                    <!-- /.dashboard-stat -->
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+                                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12" data-toggle="collapse" data-target="#coll">
+                                        <a class="dashboard-stat bg-danger" href="${pageContext.request.contextPath }/aitiKaceStaffsApiConsumption/getAllStaffs">
+
+
+
+                                            <span class="number counter">
+
+                
+   <%
+
+try{
+
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/automated_student_results_system", "root", "");
+Statement stmt = conn.createStatement();
+
+ResultSet rs = stmt.executeQuery("SELECT count(*) from staffs");
+								
+if(rs.next()){
+	
+%>                   				
+                                    				      
+      <%= rs.getString("count(*)")  %>
+            
+      <%
+
+}
+			  
+	}catch(Exception e){
+		
+		out.println(e.getMessage());
+	} 
+
+%>                              				
+                                    				           
+                                            </span>
+                                            <span class="name">Registered Staffs</span>
+                                            <span class="bg-icon"><i class="fa fa-users"></i></span>
+                                        </a>
+                                        <!-- /.dashboard-stat -->
+                                    </div>
+                                 
+                                    
+
+
+
+
+                                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12" data-toggle="collapse" data-target="#coll">
+                                      <a class="dashboard-stat bg-primary" href="#">
+
+
+
+                                          <span class="number counter">
+                                          
+                                         
+             <%
+
+try{
+
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/automated_student_results_system", "root", "");
+Statement stmt = conn.createStatement();
+
+ResultSet rs = stmt.executeQuery("SELECT count(*) from users");
+              
+if(rs.next()){
+
+%>                   				
+                                                
+    <%= rs.getString("count(*)")  %>
+          
+    <%
+
+}
+      
+}catch(Exception e){
+  
+  out.println(e.getMessage());
+} 
+
+%>           
+                                          </span>
+                                          <span class="name">Registered Users</span>
+                                          <span class="bg-icon"><i class="fa fa-users"></i></span>
+                                      </a>
+                                      <!-- /.dashboard-stat -->
+                                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                                   <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12" data-toggle="collapse" data-target="#coll">
+                                        <a class="dashboard-stat bg-warning" href="${pageContext.request.contextPath }/aitiKaceResultsApiConsumption/retrieveAllResults">
+
+
+
+                                            <span class="number counter">
+                                            
+                                            
+                                               <%
+
+try{
+
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/automated_student_results_system", "root", "");
+Statement stmt = conn.createStatement();
+
+ResultSet rs = stmt.executeQuery("SELECT count(*) from results");
+								
+if(rs.next()){
+	
+%>                   				
+                                    				      
+      <%= rs.getString("count(*)")  %>
+            
+      <%
+
+}
+			  
+	}catch(Exception e){
+		
+		out.println(e.getMessage());
+	} 
+
+%> 
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            </span>
+                                            <span class="name">Registered Results</span>
+                                            <span class="bg-icon"><i class="fa fa-file-text"></i></span>
+                                        </a>
+                                        <!-- /.dashboard-stat -->
+                                    </div>
+                                    
+                                    
+                                    
+                                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12" data-toggle="collapse" data-target="#coll">
+                                        <a class="dashboard-stat bg-success" href="${pageContext.request.contextPath }/aitiKaceCoursesApiConsumption/getAllCoursesHomePage">
+
+
+
+                                            <span class="number counter">
+                                            
+                                  
+                                     <%
+
+try{
+
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/automated_student_results_system", "root", "");
+Statement stmt = conn.createStatement();
+
+ResultSet rs = stmt.executeQuery("SELECT count(*) from courses");
+								
+if(rs.next()){
+	
+%>                   				
+                                    				      
+      <%= rs.getString("count(*)")  %>
+            
+      <%
+
+}
+			  
+	}catch(Exception e){
+		
+		out.println(e.getMessage());
+	} 
+
+%>           
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            </span>
+                                            <span class="name">Total Courses</span>
+                                            <span class="bg-icon"><i class="fa fa-bank"></i></span>
+                                        </a>
+                                        <!-- /.dashboard-stat -->
+                                    </div>
+                                    
+                                    
+                                    
+                                      <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12" data-toggle="collapse" data-target="#coll">
+                                        <a class="dashboard-stat bg-primary" href="${pageContext.request.contextPath }/aitiKaceModulesApiConsumption/getAllModulesHomePage">
+
+
+
+                                            <span class="number counter">
+                                            
+                                           
+               <%
+
+try{
+
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/automated_student_results_system", "root", "");
+Statement stmt = conn.createStatement();
+
+ResultSet rs = stmt.executeQuery("SELECT count(*) from modules");
+								
+if(rs.next()){
+	
+%>                   				
+                                    				      
+      <%= rs.getString("count(*)")  %>
+            
+      <%
+
+}
+			  
+	}catch(Exception e){
+		
+		out.println(e.getMessage());
+	} 
+
+%>           
+                                            </span>
+                                            <span class="name">Total Modules</span>
+                                            <span class="bg-icon"><i class="fa fa-users"></i></span>
+                                        </a>
+                                        <!-- /.dashboard-stat -->
+                                    </div>
+    
+                                
+                                
+                                
+                          
+
+
+                                                   
+                                </div>                             
+                                
+                                
+                                
+                              </div>  
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                <!-- /.row -->
+
+
+
+
+
+
+
+<br><br>
+        
+        
+        <h1 class="h2 mb-0 text-gray-800 text-center">AITI-KACE BAR CHART</h1>
+        
+
+
+         
+
+
+
+
+
+ <br>
+
+                        <div class="row">
+
+
+                            <div class="chart">
+
+                                <br>
+                                <ul class="numbers">
+                                    <li><span>100%</span></li>
+                                    <li><span>50%</span></li>
+                                    <li><span>0%</span></li>
+
+                                </ul>
+
+                                <ul class="bars">
+                                    <li>
+<%
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/automated_student_results_system", "root", "");
+Statement stmt = conn.createStatement();
+
+ResultSet rs = stmt.executeQuery("SELECT count(*) from students");
+            
+if(rs.next()){
+
+%>                                     
+                                    
+<div class="bar" data-percentage="<%= rs.getString("count(*)") %> ">
+
+<%
+
+}
+
+%>
+
+</div><span><a href="${pageContext.request.contextPath }/aitiKaceStudentsApiConsumption/getStudentsHomePage">Students</a></span>
+                                    </li>
+
+                                    <li>
+<%
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+Connection conns = DriverManager.getConnection("jdbc:mysql://localhost:3306/automated_student_results_system", "root", "");
+Statement stmts = conn.createStatement();
+
+ResultSet rss = stmt.executeQuery("SELECT count(*) from modules");
+            
+if(rss.next()){
+
+%>                                     
+                                    
+<div class="bar" data-percentage="<%= rss.getString("count(*)")  %>">
+
+<%
+
+}
+
+%>
+
+</div><span><a href="${pageContext.request.contextPath }/aitiKaceModulesApiConsumption/getAllModulesHomePage">Modules</a></span>
+                                    </li>
+
+                                    <li>
+<%
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+Connection connq = DriverManager.getConnection("jdbc:mysql://localhost:3306/automated_student_results_system", "root", "");
+Statement stmtq = conn.createStatement();
+
+ResultSet rsq = stmt.executeQuery("SELECT count(*) from courses");
+            
+if(rsq.next()){
+
+%>                                     
+                                    
+<div class="bar" data-percentage="<%= rsq.getString("count(*)")  %>">
+
+<%
+
+}
+
+%>
+
+</div><span><a href="${pageContext.request.contextPath }/aitiKaceCoursesApiConsumption/getAllCoursesHomePage">Courses</a></span>
+                                    </li>
+
+
+
+
+
+
+
+
+                                    <li>
+<%
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+Connection connw = DriverManager.getConnection("jdbc:mysql://localhost:3306/automated_student_results_system", "root", "");
+Statement stmtw = conn.createStatement();
+
+ResultSet rsw = stmt.executeQuery("SELECT count(*) from results");
+            
+if(rsw.next()){
+
+%>                                     
+                                    
+<div class="bar" data-percentage="<%= rsw.getString("count(*)")  %>">
+
+<%
+
+}
+
+%>
+
+</div><span><a href="${pageContext.request.contextPath }/aitiKaceResultsApiConsumption/retrieveAllResults">Results</a></span>
+                                    </li>
+
+
+
+
+
+
+
+
+
+                                    <li>                   
+<%
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+Connection conne = DriverManager.getConnection("jdbc:mysql://localhost:3306/automated_student_results_system", "root", "");
+Statement stmte = conn.createStatement();
+
+ResultSet rse = stmt.executeQuery("SELECT count(*) from staffs");
+            
+if(rse.next()){
+
+%>                                     
+                                    
+<div class="bar" data-percentage="<%= rse.getString("count(*)")  %>">
+
+<%
+
+}
+
+%>
+
+</div>
+
+
+
+
+                                        
+                                        <span><a href="${pageContext.request.contextPath }/aitiKaceStaffsApiConsumption/getAllStaffs">Staffs</a></span>
+                                    </li>
+
+
+
+
+                                </ul>
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+
+
+<a class="gotopbtn" href="#"><img src="${pageContext.request.contextPath }/resources/images/arrow1.png" width="30px" height="30px"></a>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+            $(function() {
+                $('.bars li .bar').each(function(key, bar) {
+                    var percentage = $(this).data('percentage');
+                    $(this).animate({
+                        'height': percentage + '%'
+                    }, 5000);
+
+                });
+            });
+ </script>
+
+
+
+
+
+
+<script>
+
+
+
+(function($) {
+	  "use strict"; // Start of use strict
+
+	  // Toggle the side navigation
+	  $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
+	    $("body").toggleClass("sidebar-toggled");
+	    $(".sidebar").toggleClass("toggled");
+	    if ($(".sidebar").hasClass("toggled")) {
+	      $('.sidebar .collapse').collapse('hide');
+	    };
+	  });
+
+	  // Close any open menu accordions when window is resized below 768px
+	  $(window).resize(function() {
+	    if ($(window).width() < 768) {
+	      $('.sidebar .collapse').collapse('hide');
+	    };
+	  });
+
+	  // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
+	  $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(e) {
+	    if ($(window).width() > 768) {
+	      var e0 = e.originalEvent,
+	        delta = e0.wheelDelta || -e0.detail;
+	      this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+	      e.preventDefault();
+	    }
+	  });
+
+	  // Scroll to top button appear
+	  $(document).on('scroll', function() {
+	    var scrollDistance = $(this).scrollTop();
+	    if (scrollDistance > 100) {
+	      $('.scroll-to-top').fadeIn();
+	    } else {
+	      $('.scroll-to-top').fadeOut();
+	    }
+	  });
+
+	  // Smooth scrolling using jQuery easing
+	  $(document).on('click', 'a.scroll-to-top', function(e) {
+	    var $anchor = $(this);
+	    $('html, body').stop().animate({
+	      scrollTop: ($($anchor.attr('href')).offset().top)
+	    }, 1000, 'easeInOutExpo');
+	    e.preventDefault();
+	  });
+
+	})(jQuery); // End of use strict
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+<div class="container my-auto">
+<div class="copyright text-center my-auto">
+  <span>Copyright &copy; AITI-KACE 2021</span>
+</div>
+</div>
+</footer>
+<!-- End of Footer -->
+
+
+
+
+</body>
+</html>

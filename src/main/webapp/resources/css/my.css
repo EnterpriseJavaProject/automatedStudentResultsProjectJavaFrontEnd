@@ -1,0 +1,17 @@
+@charset "ISO-8859-1";
+
+.close_button{
+	text-decoration:none;
+	background:red;width:60px;
+	border-radius:3px;
+	font-size:20px;
+	color:white;
+	text-align:center;
+}
+.close_button,a:hover{
+	text-decoration:none;
+	color:white;
+}
+.close_button,a{
+	color:white;
+}

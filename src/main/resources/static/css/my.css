@@ -1,0 +1,64 @@
+@charset "ISO-8859-1";
+
+.close_button{
+	text-decoration:none;
+	background:red;width:60px;
+	border-radius:3px;
+	font-size:20px;
+	color:white;
+	text-align:center;
+}
+.close_button,a:hover{
+	text-decoration:none;
+	color:white;
+}
+.close_button,a{
+	color:white;
+}
+
+
+  .align-items-center {
+    -ms-flex-align: center !important;
+    align-items: center !important;
+  }
+  
+  
+   .justify-content-between {
+    -ms-flex-pack: justify !important;
+    justify-content: space-between !important;
+  }
+  
+  
+    .mb-4,
+  .my-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+      .d-sm-flex {
+      display: -ms-flexbox !important;
+      display: flex !important;
+    }
+  
+  
+   .mb-0,
+  .my-0 {
+    margin-bottom: 0 !important;
+  }
+  
+  
+  .text-center {
+    text-align: center !important;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
